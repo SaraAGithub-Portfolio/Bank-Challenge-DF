@@ -1,4 +1,5 @@
 import Account from "../../src/account.js";
+import Transaction from "../../src/transaction.js"
 
 describe('Account Test', () => {
     let testAccount;
@@ -27,6 +28,20 @@ describe('Account Test', () => {
             });
 
         });
+        describe('Statement printing', () => {
+            it('should print the account statement correctly', () => {
+                const transactions = [
+                    new Transaction('10/01/2012', 1000, null, 1000)
+                ];
+                const statementPrinterMock = {
+                    printerStatement: () => { }
+                };
+                spyOn(statementPrinterMock, 'printerStatement');
+                transactions.forEach(transaction => testAccount.addTransaction(transaction));
+                testAccount.printStatement(statementPrinterMock);
+                expect(statementPrinterMock.printerStatement).toHaveBeenCalledWith(transactions);
+            });
+        })
 
     });
 
