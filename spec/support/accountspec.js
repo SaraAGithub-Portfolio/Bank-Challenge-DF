@@ -1,5 +1,28 @@
 import Account from "../../src/account.js";
-import Transaction from "../../src/transaction.js"
+
+class MockTransaction {
+    date;
+    deposit;
+    withdraw;
+
+    constructor(date = '', deposit = 0, withdraw = 0) {
+        this.date = date;
+        this.deposit = deposit;
+        this.withdraw = withdraw;
+    }
+
+    getDate() {
+        return this.date;
+    };
+
+    getDeposit() {
+        return this.deposit;
+    };
+
+    getWithdraw() {
+        return this.withdraw;
+    };
+}
 
 describe('Account Tests', () => {
     let testAccount;
@@ -7,66 +30,44 @@ describe('Account Tests', () => {
     beforeEach(() => {
         testAccount = new Account();
     });
-    it('should test that account exists', () => {
-        expect(testAccount instanceof Account).toBe(true);
-    });
-    describe('Test balance', () => {
-        it(' should have a balance of 0 for initialization', () => {
-            let expected = 0;
 
-            expect(testAccount.getBalance()).toBe(expected);
+    describe('Account instantiation test', () => {
+        it('should report true for hasAccount', () => {
+            expect(testAccount.hasAccount()).toBe(true);
         });
-        describe('Deposit tests', () => {
-            it('should increase the amount of the balance', () => {
-                let amount = 100;
-                testAccount.deposit(amount);
-                expect(testAccount.getBalance()).toBe(amount);
-            });
-            it('should only accept numbers', () => {
-                let amount = 'not a number';
-                expect(() => { testAccount.deposit(amount) }).toThrowError('This is not a number');
-            });
-            describe('Add Transaction Tests', () => {
-                it('should add a valid transaction', () => {
-                    const transaction = {
-                        date: '101/01/2012',
-                        deposit: 1000,
-                        withdrawal: null,
-                        balance: 1000,
-                    };
-                    expect(() => {
-                        testAccount.addTransaction(transaction);
-                    })
-                });
-                it('should throw an error for a duplicate transaction', () => {
-                    const transaction = {
-                        date: '10/01/2012',
-                        deposit: 1000,
-                        withdrawal: null,
-                        balance: 1000,
-                    };
-                    testAccount.addTransaction(transaction);
-                    expect(() => {
-                        testAccount.addTransaction(transaction);
-                    }).toThrowError('Duplicate transaction');
-                });
-            });
-
-        });
-        describe('Statement printing', () => {
-            it('should print the account statement correctly', () => {
-                const transaction = [
-                    new Transaction('10/01/2012', 1000, null, 1000)
-                ];
-                const statementPrinterMock = {
-                    printerStatement: () => { }
-                };
-                spyOn(statementPrinterMock, 'printerStatement');
-                testAccount.printStatement(statementPrinterMock);
-                expect(statementPrinterMock.printerStatement).toHaveBeenCalledWith(testAccount.getTransactions());
-            });
-        })
-
     });
 
+    describe('Deposit Tests', () => {
+        it('should add 100 to the balance', () => {
+            const mockTransactionDeposit = new MockTransaction('11/11/2011', 100, 0);
+
+            testAccount.deposit(mockTransactionDeposit);
+
+            expect(testAccount.getBalance()).toEqual(100);
+        });
+    });
+
+    describe('Withdraw Tests', () => {
+        it('should remove 50 from the balance', () => {
+            const mockTransactionDeposit = new MockTransaction('11/11/2011', 100, 0);
+            const mockTransactionWithdraw = new MockTransaction('11/11/2011', 0, 50);
+
+            testAccount.deposit(mockTransactionDeposit);
+            testAccount.withdraw(mockTransactionWithdraw);
+
+            expect(testAccount.getBalance()).toEqual(50);
+        });
+
+        describe('Account Array Transactions', () => {
+            it('should add 2 transactions to the array', () => {
+                const mockTransactionDeposit = new MockTransaction('11/11/2011', 100, 0);
+                const mockTransactionWithdraw = new MockTransaction('11/11/2011', 0, 50);
+
+                testAccount.deposit(mockTransactionDeposit);
+                testAccount.withdraw(mockTransactionWithdraw);
+
+                expect(testAccount.getTransactions().length).toBe(2);
+            });
+        });
+    });
 });
