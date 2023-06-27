@@ -1,10 +1,10 @@
 class Account {
     #accountBalance;
-    #transactionArray = [];
+    #transactionsArray = [];
 
     constructor(initialBalance = 0, transactions = []) {
         this.#accountBalance = initialBalance;
-        this.#transactionArray = transactions;
+        this.#transactionsArray = transactions;
     }
     hasAccount() {
         return true;
@@ -13,27 +13,27 @@ class Account {
         return this.#accountBalance;
     }
     getTransactions() {
-        return this.#transactionArray;
+        return this.#transactionsArray;
     }
     withdraw(transactions) {
         const date = transactions.getDate();
-        const credit = transactions.getDeposit();
-        const debit = transactions.getWithdraw();
+        const credit = transactions.getCredit();
+        const debit = transactions.getDebit();
         if (isNaN(debit)) {
             throw new Error('Invalid input: withdraw amount is not a number')
         }
         this.#accountBalance -= debit;
-        return this.#transactionArray.push(transactions)
+        return this.#transactionsArray.push(transactions)
     };
     deposit(transactions) {
         const date = transactions.getDate();
-        const credit = transactions.getDeposit();
-        const debit = transactions.getWithdraw();
+        const credit = transactions.getCredit();
+        const debit = transactions.getDebit();
         if (isNaN(credit)) {
             throw Error('Invalid input: deposit amount is not a number');
         }
         this.#accountBalance += credit;
-        return this.#transactionArray.push(transactions)
+        return this.#transactionsArray.push(transactions)
     }
 }
 export default Account;
