@@ -2,26 +2,31 @@ import Account from "../../src/account.js";
 
 class MockTransaction {
     date;
-    deposit;
-    withdraw;
+    credit;
+    debit;
+    balance;
 
-    constructor(date = '', deposit = 0, withdraw = 0) {
+    constructor(date = '', credit = 0, debit = 0, balance = 0) {
         this.date = date;
-        this.deposit = deposit;
-        this.withdraw = withdraw;
+        this.credit = credit;
+        this.debit = debit;
+        this.balance = balance;
     }
 
     getDate() {
         return this.date;
     };
 
-    getDeposit() {
-        return this.deposit;
+    getCredit() {
+        return this.credit;
     };
 
-    getWithdraw() {
-        return this.withdraw;
-    };
+    getDebit() {
+        return this.debit;
+    }
+    getBalance() {
+        return this.balance;
+    }
 }
 
 describe('Account Tests', () => {
