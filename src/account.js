@@ -15,25 +15,27 @@ class Account {
     getTransactions() {
         return this.#transactionsArray;
     }
-    withdraw(transactions) {
-        const date = transactions.getDate();
-        const credit = transactions.getCredit();
-        const debit = transactions.getDebit();
+    withdraw(transaction) {
+        const debit = transaction.getDebit();
         if (isNaN(debit)) {
-            throw new Error('Invalid input: withdraw amount is not a number')
+            throw new Error('Invalid Input: Not a number')
+        }
+        if (debit < 0) {
+            throw new Error('Invalid Input: cannot be negative number')
         }
         this.#accountBalance -= debit;
-        return this.#transactionsArray.push(transactions)
+        return this.#transactionsArray.push(transaction)
     };
-    deposit(transactions) {
-        const date = transactions.getDate();
-        const credit = transactions.getCredit();
-        const debit = transactions.getDebit();
+    deposit(transaction) {
+        const credit = transaction.getCredit();
         if (isNaN(credit)) {
-            throw Error('Invalid input: deposit amount is not a number');
+            throw Error('Invalid Input: Not a number');
+        }
+        if (credit < 0) {
+            throw new Error('Invalid Input: cannot be negative number')
         }
         this.#accountBalance += credit;
-        return this.#transactionsArray.push(transactions)
+        return this.#transactionsArray.push(transaction)
     }
 }
 export default Account;
