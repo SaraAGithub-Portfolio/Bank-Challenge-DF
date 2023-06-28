@@ -50,6 +50,14 @@ describe('Account Tests', () => {
 
             expect(testAccount.getBalance()).toEqual(100);
         });
+        it('should throw a NaN error', () => {
+            const mockTransactionNaN = new MockTransaction('11/11/2011', NaN, 0);
+            expect(() => testAccount.deposit(mockTransactionNaN)).toThrowError('Invalid Input: Not a number');
+        });
+        it('should throw an error when encountering a negative number', () => {
+            const mockTransactionNegative = new MockTransaction('11/11/2011', -10, 0);
+            expect(() => { testAccount.deposit(mockTransactionNegative) }).toThrowError('Invalid Input: cannot be negative number');
+        });
     });
 
     describe('Withdraw Tests', () => {
@@ -61,6 +69,14 @@ describe('Account Tests', () => {
             testAccount.withdraw(mockTransactionWithdraw);
 
             expect(testAccount.getBalance()).toEqual(50);
+        });
+        it('should throw a NaN error', () => {
+            const mockTransactionNaN = new MockTransaction('11/11/2011', 0, NaN);
+            expect(() => testAccount.withdraw(mockTransactionNaN)).toThrowError('Invalid Input: Not a number');
+        });
+        it('should throw an error when encountering a negative number', () => {
+            const mockTransactionNegative = new MockTransaction('11/11/2011', 0, -10);
+            expect(() => testAccount.withdraw(mockTransactionNegative)).toThrowError('Invalid Input: cannot be negative number');
         });
 
         describe('Account Array Transactions', () => {
