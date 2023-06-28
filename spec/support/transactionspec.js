@@ -37,4 +37,14 @@ describe('Transaction tests', () => {
         transaction.getBalance();
         expect(transaction.getBalance).toHaveBeenCalledWith();
     });
+    it('should throw an error when setting an invalid debit amount', () => {
+        expect(() => {
+            transaction.setDebit(-10);
+        }).toThrowError('Invalid Input: cannot be negative number');
+    });
+    it('should throw an error when setting an invalid credit amount', () => {
+        expect(() => {
+            transaction.setCredit('abc');
+        }).toThrowError('Invalid Input: must be a number');
+    });
 });
