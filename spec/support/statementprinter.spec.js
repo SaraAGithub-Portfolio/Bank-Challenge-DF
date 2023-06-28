@@ -1,23 +1,58 @@
 import StatementPrinter from "../../src/statementPrinter.js";
+class MockTransaction {
+    date;
+    credit;
+    debit;
+    balance;
 
+    constructor(date = '', credit = 0, debit = 0, balance = 0) {
+        this.date = date;
+        this.credit = credit;
+        this.debit = debit;
+        this.balance = balance;
+    }
+
+    getDate() {
+        return this.date;
+    };
+
+    getCredit() {
+        return this.credit;
+    };
+
+    getDebit() {
+        return this.debit;
+    }
+    getBalance() {
+        return this.balance;
+    }
+}
 describe('Statement Printer tests', () => {
     let logSpy;
-    const transactionsArray = [
-        { date: '11/01/2012', credit: 0, debit: 50, balance: 50 },
-        { date: '11/11/2011', credit: 50, debit: 0, balance: 100 },
-        { date: '11/11/2011', credit: 50, debit: 0, balance: 50 },
-    ];
+    let transactionsArray;
+
     beforeEach(() => {
         logSpy = spyOn(console, 'log');
+        transactionsArray = [
+            new MockTransaction('11/01/2012', 0, 50, 50),
+            new MockTransaction('11/11/2011', 50, 0, 100),
+            new MockTransaction('11/11/2011', 50, 0, 50),
+        ];
     });
     it('should call on console.log the correct number of times', () => {
         StatementPrinter.printArray(transactionsArray);
         expect(logSpy).toHaveBeenCalledTimes(transactionsArray.length);
     });
     it('should call console.log with the correct arguments', () => {
-        StatementPrinter.printArray(transactionsArray);
-        for (let i = 0; i < transactionsArray.length; i++) {
-            expect(logSpy).toHaveBeenCalledWith(transactionsArray[i]);
-        }
+
+        transactionsArray.forEach((transaction) => {
+
+            StatementPrinter.printArray(transactionsArray);
+            const date = transaction.getDate();
+            const credit = transaction.getCredit() !== null ? transaction.getCredit().toFixed(2) : '';
+            const debit = transaction.getDebit() !== null ? transaction.getDebit().toFixed(2) : '';
+            const balance = transaction.getBalance().toFixed(2);
+            expect(logSpy).toHaveBeenCalledWith(`${date} || ${credit.padEnd(7)} || ${debit.padEnd(6)} || ${balance}`);
+        });
     });
 });
