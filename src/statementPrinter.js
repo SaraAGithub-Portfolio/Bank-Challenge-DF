@@ -36,7 +36,6 @@ class StatementPrinter {
         const formattedBalance = balance > 0 ? chalk.green(balance) : chalk.red(balance);
         return formattedBalance;
     }
-
 }
 export default StatementPrinter;
 
