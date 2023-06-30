@@ -24,6 +24,7 @@ class Transaction {
             throw new Error('Invalid Input: cannot be negative number');
         }
         this.#debit = debit;
+        this.calculateBalance();
     };
     getCredit() {
         return this.#credit;
@@ -33,12 +34,16 @@ class Transaction {
             throw new Error('Invalid Input: must be a number');
         }
         this.#credit = credit;
+        this.calculateBalance();
     }
     getBalance() {
         return this.#balance;
     }
     setBalance(balance) {
         this.#balance = balance;
+    }
+    calculateBalance() {
+        this.#balance = this.#credit - this.#debit;
     }
 
 }
