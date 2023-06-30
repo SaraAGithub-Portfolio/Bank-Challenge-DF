@@ -13,6 +13,11 @@ describe('Transaction tests', () => {
         transaction.getDate();
         expect(transaction.getDate).toHaveBeenCalledWith();
     });
+    it('should set the current date as default if no date is provided', () => {
+        const currentDate = new Date().toLocaleDateString();
+        const transactionWithoutDate = new Transaction();
+        expect(transactionWithoutDate.getDate()).toEqual(currentDate);
+    });
     it('should have the correct debit amount', () => {
         expect(transaction.getDebit()).toEqual(50);
     });
