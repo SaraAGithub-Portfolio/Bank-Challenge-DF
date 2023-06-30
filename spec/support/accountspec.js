@@ -6,7 +6,7 @@ class MockTransaction {
     debit;
     balance;
 
-    constructor(date = '', credit = 0, debit = 0, balance = 0) {
+    constructor(date = new Date().toLocaleDateString(), credit = 0, debit = 0, balance = 0) {
         this.date = date;
         this.credit = credit;
         this.debit = debit;
@@ -36,12 +36,11 @@ describe('Account Tests', () => {
         testAccount = new Account();
     });
 
-    describe('Account instantiation test', () => {
-        it('should report true for hasAccount', () => {
-            expect(testAccount.hasAccount()).toBe(true);
+    describe('Balance Tests', () => {
+        it('should initialize the balance to zero', () => {
+            expect(testAccount.getBalance()).toEqual(0);
         });
     });
-
     describe('Deposit Tests', () => {
         it('should add 100 to the balance', () => {
             const mockTransactionDeposit = new MockTransaction('11/11/2011', 100, 0);
