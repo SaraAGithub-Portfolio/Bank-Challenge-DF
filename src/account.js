@@ -6,9 +6,6 @@ class Account {
         this.#accountBalance = initialBalance;
         this.#transactionsArray = transactions;
     }
-    hasAccount() {
-        return true;
-    }
     getBalance() {
         return this.#accountBalance;
     }
@@ -25,7 +22,7 @@ class Account {
         }
         this.#accountBalance -= debit;
         return this.#transactionsArray.push(transaction)
-    };
+    }
     deposit(transaction) {
         const credit = transaction.getCredit();
         if (isNaN(credit)) {
