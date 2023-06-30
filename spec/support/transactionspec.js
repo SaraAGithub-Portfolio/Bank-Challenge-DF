@@ -42,6 +42,16 @@ describe('Transaction tests', () => {
         transaction.getBalance();
         expect(transaction.getBalance).toHaveBeenCalledWith();
     });
+    it('should update the balance correctly', () => {
+        const initialCredit = 100;
+        const initialDebit = 50;
+        const expectedBalance = initialCredit - initialDebit;
+
+        transaction.setCredit(initialCredit);
+        transaction.setDebit(initialDebit);
+
+        expect(transaction.getBalance()).toEqual(expectedBalance);
+    });
     it('should throw an error when setting an invalid debit amount', () => {
         expect(() => {
             transaction.setDebit(-10);
