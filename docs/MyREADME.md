@@ -72,36 +72,35 @@ Use Jasmine to run tests and Node.js for when you want to view the printed state
 1. User Story: As a client, so that I can save money, I should deposit money into my account.
  Objects                Properties                                   Messages              Output          
 
- Account       || initialBalance(@Int), transactionsArray(@Array) || deposit(@Int)          || @Balance(Int)   
+ Account       || initialBalance(@Int), transactionsArray(@Array) || deposit(@Int)          || @Int  
                ||                                                 ||                        ||
-Transaction    ||  credit, balance                                ||getCredit(),getBalance  ||@ Int
+Transaction    ||  credit, balance                                || getCredit()            ||@ Int
 
 2. User Story: As a client, so that I can spend money, I should withdraw money from my account.
 Objects         Properties                                               Messages           Output          
 
-Account         || initialBalance(@Int), transactionsArray(@Array) || withdraw(@Int),    || @Balance(Int)   
-                ||                                                 ||calculateBalance()  ||
-Transaction     ||  debit, balance                                 ||                    || @Int   
+Account         || initialBalance(@Int), transactionsArray(@Array) || withdraw(@Int),    ||@Int   
+                ||                                                 ||                    ||
+                ||                                                 ||                    ||
+Transaction     ||  debit                                          ||getDebit()          || @Int   
 
 
 3. User Story: As a client, so that I can view the amount in my account, I should have an account balance.
  Objects                  Properties                                       Messages        Output 
 
- Account         || initialBalance(@Int), transactionsArray(@Array) || getBalance(),      || @Balance(Int)
-                 ||                                                 || calculateBalance() ||
-Transaction      || balance(Int)                                    ||                    || @Int   
+ Account         || initialBalance(@Int), transactionsArray(@Array) || getBalance()       || @Balance(Int)
+                 ||                                                 ||                    ||
+Transaction      || balance                                         ||                    ||   
 
 
 4. User Story: As a client, so that I can keep track of my balance, I should see the updated balance after each transaction.
  Objects             Properties                                         Messages                             Output          
 
- Account          || initialBalance(@Int), transactionsArray(@Array)|| withdraw(transaction),               || Balance(@Int)            
-                  ||                                                ||deposit(transaction),                 ||                
-                  ||                                                || getTransactions(), getBalance(),     || @Array          
-                  ||                                                || calculateBalance()                   ||
+Account           || initialBalance(@Int), transactionsArray(@Array)|| getTransactions(), getBalance(),     || @Array          
+                  ||                                                || calculateBalance()                   ||@Int
                   ||                                                ||                                      ||
- Transaction      || date, credit, debit, balance                   || getDate(), getCredit(), getDebit(),  ||                 
-                  ||                                                || getBalance(),                        ||                 
+ Transaction      || date, credit, debit, balance                   || getDate(), getCredit(), getDebit(),  ||                
+                  ||                                                || getBalance()                         ||                 
                   ||                                                ||                                      ||
  StatementPrinter ||                                                ||formatTransaction(transaction),       || @Array          
                   ||                                                || formatBalance(transaction)           || @String         
@@ -112,7 +111,9 @@ Transaction      || balance(Int)                                    ||          
 
  Account          || initialBalance(@Int), transactionsArray(@Array)  || getTransactions()              || @Array  
                   ||                                                  ||                                ||
- Transaction      || date, credit, debit, balance                     ||                                ||         
+                  ||                                                  ||                                ||
+ Transaction      || date, credit, debit, balance                     || getDate(),getDebit(),          ||         
+                  ||                                                  || getCredit(),getBalance()       ||
                   ||                                                  ||                                ||
  StatementPrinter ||                                                  || formatTransaction(transaction) || @String 
 
@@ -121,19 +122,19 @@ Transaction      || balance(Int)                                    ||          
 6. User Story: As a client, so that my bank account transactions are organized, transactions should be printed by the latest date.
  Objects             Properties                                          Messages                            Output 
 
- Account          || initialBalance(@Int), transactionsArray(@Array)|| getTransactions()                   || @Array  
+ Account          || initialBalance(@Int)                           ||                                     ||   
                   ||                                                ||                                     ||
  Transaction      || date, credit, debit, balance                   || getDate()                           || @Date       
                   ||                                                ||                                     ||
  StatementPrinter ||                                                || formatTransaction(transaction)      || @String 
 
 
-7. User Story: As a client, so that I can identify positive and negative transactions easily, credits in my account should be green.
+7. User Story: As a client, so that I can identify positive and negative transactions easily, credits and positive balances in my account should be green.
  Objects            Properties                                        Messages                                 Output        
 
- Account          || initialBalance(@Int)                          ||getBalance(), deposit()              || Balance(@Int)              
+ Account          || initialBalance(@Int)                          || getBalance(), deposit()             || Balance(@Int)              
                   ||                                               ||                                     || @Int
- Transaction      ||  credit,balance                               ||                                     ||               
+ Transaction      ||  credit,balance                               ||   getCredit()                       ||               
                   ||                                               ||                                     ||
  StatementPrinter ||                                               || formatCredit(transaction),          || @Array        
                   ||                                               || formatBalance(transaction)          ||               
@@ -145,7 +146,7 @@ Transaction      || balance(Int)                                    ||          
 
  Account          || initialBalance(@Int)                           ||  getBalance(),withdraw()            || @Balance(Int)               
                   ||                                                ||                                     ||@Int
- Transaction      ||  credit,balance                                ||                                     ||               
+ Transaction      ||  debit,balance                                 ||  getDebit()                         ||               
                   ||                                                ||                                     ||
  StatementPrinter ||                                                || formatDebit(transaction),           || @Array        
                   ||                                                || formatBalance(transaction)          ||               
