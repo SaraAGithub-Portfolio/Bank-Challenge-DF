@@ -20,7 +20,6 @@ class Account {
         if (debit < 0) {
             throw new Error('Invalid Input: cannot be negative number')
         }
-        this.#accountBalance -= debit;
         return this.#transactionsArray.push(transaction)
     }
     deposit(transaction) {
@@ -31,7 +30,6 @@ class Account {
         if (credit < 0) {
             throw new Error('Invalid Input: cannot be negative number')
         }
-        this.#accountBalance += credit;
         return this.#transactionsArray.push(transaction)
     }
     calculateBalance() {
@@ -39,6 +37,7 @@ class Account {
             return balance + transaction.getCredit() - transaction.getDebit();
         }, 0);
     }
+
 
 }
 export default Account;
