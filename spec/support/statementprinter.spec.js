@@ -84,4 +84,10 @@ describe("Statement Printer tests", () => {
             expect(logSpy).toHaveBeenCalledWith(expectedOutput);
         });
     });
+    it('should throw an error when an empty transactionArray is passed', () => {
+        const emptyTransactionArray = [];
+        expect(() => {
+            StatementPrinter.printArray(emptyTransactionArray);
+        }).toThrowError('Invalid transaction');
+    });
 });
