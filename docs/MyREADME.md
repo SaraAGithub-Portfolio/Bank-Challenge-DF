@@ -133,8 +133,8 @@ Transaction      || balance(Int)                                    || calculate
  Transaction      || date, credit                                  ||                                     ||               
                   ||                                               ||                                     ||
  StatementPrinter ||                                               || formatCredit(transaction),          || @Array        
-                  ||                                               || formatBalance(transaction),         ||               
-                  ||                                               ||  formatBalance(transaction)
+                  ||                                               || formatBalance(transaction)         ||               
+                  ||                                               ||  
                                                 
 
 8. User Story: As a client, so that I can identify positive and negative transactions easily, debits in my account should be red.
