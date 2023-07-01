@@ -2,9 +2,9 @@ class Account {
     #accountBalance;
     #transactionsArray = [];
 
-    constructor(initialBalance = 0, transactions = []) {
+    constructor(initialBalance = 0, transaction = []) {
         this.#accountBalance = initialBalance;
-        this.#transactionsArray = transactions;
+        this.#transactionsArray = transaction;
     }
     getBalance() {
         return this.#accountBalance;
@@ -34,5 +34,11 @@ class Account {
         this.#accountBalance += credit;
         return this.#transactionsArray.push(transaction)
     }
+    calculateBalance() {
+        this.#accountBalance = this.#transactionsArray.reduce((balance, transaction) => {
+            return balance + transaction.getCredit() - transaction.getDebit();
+        }, 0);
+    }
+
 }
 export default Account;
