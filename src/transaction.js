@@ -23,9 +23,5 @@ class Transaction {
     getBalance() {
         return this.#balance;
     }
-    calculateBalance() {
-        this.#balance = this.#credit - this.#debit;
-    }
-
 }
 export default Transaction;
