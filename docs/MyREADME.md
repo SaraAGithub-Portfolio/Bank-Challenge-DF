@@ -133,7 +133,7 @@ Transaction      || balance(Int)                                    || calculate
  Transaction      || date, credit                                  ||                                     ||               
                   ||                                               ||                                     ||
  StatementPrinter ||                                               || formatCredit(transaction),          || @Array        
-                  ||                                               || formatBalance(transaction)         ||               
+                  ||                                               || formatBalance(transaction)          ||               
                   ||                                               ||  
                                                 
 
