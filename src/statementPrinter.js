@@ -2,6 +2,9 @@ import chalk from "chalk";
 
 class StatementPrinter {
     static printArray(transactions) {
+        if (!Array.isArray(transactions) || transactions.length === 0) {
+            throw new Error('Invalid transaction');
+        }
         transactions.forEach((transaction) => {
             const formattedTransaction = this.formatTransaction(transaction);
             console.log(formattedTransaction);
