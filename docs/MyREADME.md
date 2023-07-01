@@ -141,7 +141,7 @@ Account           || initialBalance(@Int), transactionsArray(@Array)|| getTransa
                   ||                                               ||  
                                                 
 
-8. User Story: As a client, so that I can identify positive and negative transactions easily, debits in my account should be red.
+8. User Story: As a client, so that I can identify positive and negative transactions easily, debits and negative balances in my account should be red.
  Objects             Properties                                           Messages                              Output        
 
  Account          || initialBalance(@Int)                           ||  getBalance(),withdraw()            || @Balance(Int)               
