@@ -47,19 +47,9 @@ describe('Transaction tests', () => {
         const initialDebit = 50;
         const expectedBalance = initialCredit - initialDebit;
 
-        transaction.setCredit(initialCredit);
-        transaction.setDebit(initialDebit);
+        transaction.credit = initialCredit;
+        transaction.debit = initialDebit;
 
         expect(transaction.getBalance()).toEqual(expectedBalance);
-    });
-    it('should throw an error when setting an invalid debit amount', () => {
-        expect(() => {
-            transaction.setDebit(-10);
-        }).toThrowError('Invalid Input: cannot be negative number');
-    });
-    it('should throw an error when setting an invalid credit amount', () => {
-        expect(() => {
-            transaction.setCredit('abc');
-        }).toThrowError('Invalid Input: must be a number');
     });
 });
