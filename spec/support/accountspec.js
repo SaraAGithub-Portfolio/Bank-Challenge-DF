@@ -79,14 +79,18 @@ describe('Account Tests', () => {
         });
 
         describe('Account Array Transactions', () => {
-            it('should add 2 transactions to the array', () => {
+            it('should add 2 transactions to the array and calculate the balance', () => {
                 const mockTransactionDeposit = new MockTransaction('11/11/2011', 100, 0);
                 const mockTransactionWithdraw = new MockTransaction('11/11/2011', 0, 50);
 
                 testAccount.deposit(mockTransactionDeposit);
                 testAccount.withdraw(mockTransactionWithdraw);
+                testAccount.calculateBalance();
 
-                expect(testAccount.getTransactions().length).toBe(2);
+                const transactions = testAccount.getTransactions();
+
+                expect(transactions.length).toBe(2);
+                expect(testAccount.getBalance()).toEqual(50);
             });
         });
     });
