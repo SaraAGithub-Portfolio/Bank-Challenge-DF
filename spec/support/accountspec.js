@@ -46,6 +46,7 @@ describe('Account Tests', () => {
             const mockTransactionDeposit = new MockTransaction('11/11/2011', 100, 0);
 
             testAccount.deposit(mockTransactionDeposit);
+            testAccount.calculateBalance();
 
             expect(testAccount.getBalance()).toEqual(100);
         });
@@ -66,6 +67,7 @@ describe('Account Tests', () => {
 
             testAccount.deposit(mockTransactionDeposit);
             testAccount.withdraw(mockTransactionWithdraw);
+            testAccount.calculateBalance();
 
             expect(testAccount.getBalance()).toEqual(50);
         });
