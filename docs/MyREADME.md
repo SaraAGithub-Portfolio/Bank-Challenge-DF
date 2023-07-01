@@ -12,6 +12,9 @@ How it works:
 * the Index.js file serves as the entry point for the application. It creates an instance of the Account class and several instances of the Transaction class. It performs transactions by calling the withdraw and deposit methods. It prints the bank statement by calling the StatementPrinter.printArray with the transaction history of 'account1'. 
 * When the user views her bank statement, she'll see that a credit/ positive balance are highlighted as green, and a debit/negative balance are highlighted as red. 
 
+My Approach:
+In order to run the tests properly, I had to mock the classes to simulate the dependencies that the tests rely on. Mock Account and Mock Transaction simulate the behavior of the actual Account and Transaction classes. This allows the tests to create instances of these mock classes and test the desired functionality without relying on the actual classes. Each test is meant to test a certain feature of the application, and some additional tests were added for error handling purposes. 
+
 
 ### Requirements
 
@@ -67,7 +70,7 @@ Use Jasmine to run tests and Node.js for when you want to view the printed state
 ### Domain Models & User Stories
 ```
 1. User Story: As a client, so that I can save money, I should deposit money into my account.
- Objects                Properties                                   Messages             Output          
+ Objects                Properties                                   Messages              Output          
 
  Account       || initialBalance(@Int), transactionsArray(@Array) || deposit(@Int)       || @Int  
                ||                                                 ||                     ||
