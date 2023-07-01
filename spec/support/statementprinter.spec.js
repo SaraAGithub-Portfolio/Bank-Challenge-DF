@@ -53,7 +53,7 @@ class MockTransaction {
     }
 }
 
-describe("Statement Printer tests", () => {
+describe('Statement Printer tests', () => {
     let transactionsArray;
     let testAccount;
 
@@ -69,7 +69,7 @@ describe("Statement Printer tests", () => {
         });
     });
 
-    it("should call on console.log the correct number of times", () => {
+    it('should call on console.log the correct number of times', () => {
         const logSpy = spyOn(console, 'log');
         StatementPrinter.printArray(transactionsArray);
         expect(logSpy).toHaveBeenCalledTimes(transactionsArray.length);
