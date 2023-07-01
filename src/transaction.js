@@ -13,34 +13,15 @@ class Transaction {
     getDate() {
         return this.#date;
     }
-    setDate(date) {
-        this.#date = date;
-    }
+
     getDebit() {
         return this.#debit;
     }
-    setDebit(debit) {
-        if (debit < 0) {
-            throw new Error('Invalid Input: cannot be negative number');
-        }
-        this.#debit = debit;
-        this.calculateBalance();
-    };
     getCredit() {
         return this.#credit;
     }
-    setCredit(credit) {
-        if (isNaN(credit)) {
-            throw new Error('Invalid Input: must be a number');
-        }
-        this.#credit = credit;
-        this.calculateBalance();
-    }
     getBalance() {
         return this.#balance;
-    }
-    setBalance(balance) {
-        this.#balance = balance;
     }
     calculateBalance() {
         this.#balance = this.#credit - this.#debit;
