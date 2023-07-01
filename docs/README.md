@@ -65,8 +65,6 @@ Use Jasmine to run tests and Node.js for when you want to view the printed state
 ```
 
 ### Domain Models
-
-
 1. User Story: As a client, so that I can save money, I should deposit money into my account.
 |  Objects	 |     Properties	                               |       Messages	             | Output        | 
 |  --------- |:-----------------------------------------------:|:---------------------------:|:-------------:|   
@@ -93,7 +91,7 @@ Use Jasmine to run tests and Node.js for when you want to view the printed state
 |Transaction     |date,credit,debit,balance                        |getDate(),getCredit(),getDebit(),   |                |
 |                |                                                 |getBalance(),calculateBalance()     |                |
 |StatementPrinter|                                                 |formatTransaction(transaction),     | @Array         |
-|                |                                                 |formatBalance(transaction)          |@ String        |
+|                |                                                 |formatBalance(transaction)          | @String        |
 
 5. User Story: As a client, so that I can view my transaction history, I should print my bank statement.
 |  Objects	      |     Properties	                                |       Messages	            | Output |
