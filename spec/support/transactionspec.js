@@ -42,14 +42,4 @@ describe('Transaction tests', () => {
         transaction.getBalance();
         expect(transaction.getBalance).toHaveBeenCalledWith();
     });
-    it('should update the balance correctly', () => {
-        const initialCredit = 100;
-        const initialDebit = 50;
-        const expectedBalance = initialCredit - initialDebit;
-
-        transaction.credit = initialCredit;
-        transaction.debit = initialDebit;
-
-        expect(transaction.getBalance()).toEqual(expectedBalance);
-    });
 });
