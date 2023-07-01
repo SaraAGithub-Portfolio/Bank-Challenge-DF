@@ -70,11 +70,11 @@ Use Jasmine to run tests and Node.js for when you want to view the printed state
 ### Domain Models & User Stories
 ```
 1. User Story: As a client, so that I can save money, I should deposit money into my account.
- Objects                Properties                                   Messages              Output          
+ Objects                Properties                                   Messages             Output          
 
- Account       || initialBalance(@Int), transactionsArray(@Array) || deposit(@Int)          || @Int  
-               ||                                                 ||                        ||
-Transaction    ||  credit, balance                                || getCredit()            ||@ Int
+ Account       || initialBalance(@Int), transactionsArray(@Array) || deposit(@Int)       || @Int  
+               ||                                                 ||                     ||
+Transaction    ||  credit, balance                                || getCredit()         ||@ Int
 
 2. User Story: As a client, so that I can spend money, I should withdraw money from my account.
 Objects         Properties                                               Messages           Output          
